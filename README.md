@@ -31,7 +31,7 @@ Instruction: Q block_of_text
 ### F Signifier
 The F instruction signifies the end of a batch of A, D and Q instructions. At the first version of the project it has no functional value. However it is later used for a Top-K query of the most common results in the queries of one batch.
 
-## Part 1
+## [Part 1](part1)
 ### Trie Node
 Each node represents a word of an n-gram. The structure contains the word, either by array or pointer depending the version of the trie node, an array of children trie nodes, the following word on an n-gram, the size of the array, the occupied number of slots on the array and a flag which turns true when the node is a final node of an n-gram. <br>
 A binary search algorithm is used when searching the children array since the children nodes are stored alphabetically. <br>
@@ -48,13 +48,13 @@ In order to initialize the structure and to execute the necessary tasks, two fil
 Both of these files go through a parser to determine which type of task must be executed. What follows the instruction, be it n-gram of text, goes through a tokenizer which returns an array of the words in the same order and it used by the Trie's functions. 
 
 <!--
-## Part 2
+## [Part 2](part2)
 ### Trie Node
 The functionality of the Trie and its nodes is advanced and separated into two parts, a dynamic and a static. The dynamic Trie uses the nodes of the previous part without any changes in its structure and functionality. The static nodes were written with the semistatic_node as a base, which was the most efficient of the three dynamic nodes of Part 1, and adds a shrink function. The main difference of the two types of Tries is that when having nodes with a single child, the word of the parent node and its child are saved in a single node instead of having long chains of single nodes.  Obviously, this changes the structure of the nodes and the internal functionality but little change is necessary on the Trie and its functions. Moreover the Trie Node Connector minimizes these changes, as it will be made clear in the trie_node_connector structure description below. <br>
 The static nodes contain the same variables as in the semistatic_node structure but instead of a boolean to represent a final node, two new variables are used. These two variables are a short integer array that saved the length of the word(s) in the node with the length's sign representing the final node, and a short integer for the size of the array or the number of words saved in a static node. <br>
 There are two versions of the static node with small differences:
 * static_trie_node_semi: The lengths array is always dynamically allocated
-* static_trie_node_semi_improved: The lengths array has a static version with a size of LENGTH. This LENGTH is calculated by dividing the size of the word array with the mean of the average size of English words encountered in texts and the average size of English words on a dictionary. If the words saved in one node are more than the calculated LENGTH, then the array is dynamically allocated. Both versions of the array can be accessed by a 
+* static_trie_node_semi_improved: The lengths array has a static version with a size of LENGTH. This LENGTH is calculated by dividing the size of the word array with the mean of the average size of English words encountered in texts and the average size of English words on a dictionary. If the words saved in one node are more than the calculated LENGTH, then the array is dynamically allocated. Both versions of the array can be accessed by the same pointer as do words in this node structure and both the semistatic_trie_node and static_trie_node_semi.
 
 ### Trie Node Connector
 
@@ -68,7 +68,7 @@ There are two versions of the static node with small differences:
 ### Linear Hash
 
 
-## Part 3
+## [Part 3](part3)
 -->
 
 ## Authors
