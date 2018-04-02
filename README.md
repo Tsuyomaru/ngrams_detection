@@ -57,7 +57,7 @@ There are two versions of the static node with small differences:
 * static_trie_node_semi_improved: The lengths array has a static version with a size of LENGTH. This LENGTH is calculated by dividing the size of the word array with the mean of the average size of English words encountered in texts and the average size of English words on a dictionary. If the words saved in one node are more than the calculated LENGTH, then the array is dynamically allocated. Both versions of the array can be accessed by the same pointer as do words in this node structure and both the semistatic_trie_node and static_trie_node_semi.
 
 ### Trie Node Connector
-
+In order to minimize the changes in the Trie structure and functionality, the Trie Node Connector structure was used. This structure only consists of pointers to functions for both static and dynamic implementations. Any function that was specific to the implementation type was called through this structure. For example if a new ngram was added in the Trie, the Trie itself would call a general add funtion defined in the connector. The connector would check if the Trie was static or dynamic via a saved type variable in its structure and would call the correct add function. As a result, when a type specific function is to be called, in reality two functions need to be called and go through an if statement to determine the correct type each time. This made the code a lot clearer and readable but was stripped in Part 3 for efficiency.
 
 ### Treap
 
@@ -66,6 +66,9 @@ There are two versions of the static node with small differences:
 
 
 ### Linear Hash
+
+
+### File I/O
 
 
 ## [Part 3](part3)
