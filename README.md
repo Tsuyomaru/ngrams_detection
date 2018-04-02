@@ -60,13 +60,16 @@ There are two versions of the static node with small differences:
 In order to minimize the changes in the Trie structure and functionality, the Trie Node Connector structure was used. This structure only consists of pointers to functions for both static and dynamic implementations. Any function that was specific to the implementation type was called through this structure. For example if a new ngram was added in the Trie, the Trie itself would call a general add funtion defined in the connector. The connector would check if the Trie was static or dynamic via a saved type variable in its structure and would call the correct add function. As a result, when a type specific function is to be called, in reality two functions need to be called and go through an if statement to determine the correct type each time. This made the code a lot clearer and readable but was stripped in Part 3 for efficiency.
 
 ### Treap
-
+Treap is a data structure that combines the properties of fast query and insertion in alphabetical order of binary trees and heaps accordingly. It is used in this part of the project to save the printed ngrams of each batch of queries (all queries between two F signifiers) in order of appearance and alphabetical order. If the F signifiers specifies a K, then the structure returns its Top-K records (if they exist).
 
 ### Bloom Filter
 
 
 ### Linear Hash
-
+In Part 1 of the project the first node of each ngram was saved a child directly after a root node. As a result when performing any task on the structure, the first node is searched (via binary search) in the sum of all starting nodes. This is changed in Parts 2 and 3 and instead of a root node, with all the starting nodes as its children, a Linear Hash Table is used. In constrast to the definition of a Linear Hash Table that adds one new slot for buckets after each overflow, in the project's versions after the first overflow the array for the slots is doubled but only one extra is used each time. After all the slots are used, after the next overflow the array is doubled again. That way the allocation is time efficient (our aim for the project) but expensive in memory. Three versions of Linear Hash Tables were created for the project with significant changes between them but only the last two versions were submitted.
+* linear_hash:
+* linear_hash_v2:
+* linear_hash_v3:
 
 ### File I/O
 
